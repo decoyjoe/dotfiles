@@ -9,7 +9,10 @@ command alias to interact with the dotfiles repo.
 ```shell
 cd $HOME
 git clone --bare git@github.com:decoyjoe/dotfiles.git $HOME/.dotfiles
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+echo 'alias dotfiles="/usr/bin/git --git-dir=${HOME}/.dotfiles/ --work-tree=${HOME}"' >> ~/.bash_aliases
+source ~/.bash_aliases
+dotfiles config --local user.email decoyjoe@gmail.com
+dotfiles config --local user.name "Joseph Larionov"
 dotfiles config --local status.showUntrackedFiles no
 dotfiles checkout
 ```
