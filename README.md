@@ -11,8 +11,10 @@ cd $HOME
 git clone --bare git@github.com:decoyjoe/dotfiles.git $HOME/.dotfiles
 echo 'alias dotfiles="/usr/bin/git --git-dir=${HOME}/.dotfiles/ --work-tree=${HOME}"' >> ~/.bash_aliases
 source ~/.bash_aliases
-dotfiles config --local user.email decoyjoe@gmail.com
-dotfiles config --local user.name "Joseph Larionov"
+read -p 'Enter your email: ' email
+dotfiles config --local user.email "${email}"
+read -p 'Enter your first and last name: ' first_last
+dotfiles config --local user.name "${first_last}"
 dotfiles config --local status.showUntrackedFiles no
 dotfiles checkout
 ```
