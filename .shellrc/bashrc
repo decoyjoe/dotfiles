@@ -1,0 +1,28 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+# Distro default at: /etc/skel/.bashrc
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# load all files from the .shellrc/bash.d directory
+if [ -d "$HOME/.shellrc/bash.d" ]; then
+  for file in "$HOME/.shellrc/bash.d"/*.bash; do
+    if [ -f "$file" ]; then
+      source "$file"
+    fi
+  done
+fi
+
+# Shell agnostic items
+if [ -d "$HOME/.shellrc/shell.d" ]; then
+  for file in "$HOME/.shellrc/shell.d"/*.sh; do
+    if [ -f "$file" ]; then
+      source "$file"
+    fi
+  done
+fi

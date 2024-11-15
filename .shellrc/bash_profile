@@ -1,8 +1,7 @@
 
 # ~/.profile is not read by bash(1) if ~/.bash_profile or ~/.bash_login exist.
-# So we source .profile ourselves, which then sources .bashrc.
+# So we source .profile ourselves, so that it doesn't matter which one is loaded.
 
 if [ -f "$HOME/.profile" ]; then
-. "$HOME/.profile"
+  source "$HOME/.profile"
 fi
-
