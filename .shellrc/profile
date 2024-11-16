@@ -15,6 +15,13 @@ if [ -d "$HOME/.shellrc/login.d" ]; then
       source "$file"
     fi
   done
+
+  # Support .local, not checked-in configs
+  for file in "$HOME/.shellrc/login.d"/*.login.local; do
+    if [ -f "$file" ]; then
+      source "$file"
+    fi
+  done
 fi
 
 # Now execute interactive shell items, per shell

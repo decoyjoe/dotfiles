@@ -16,11 +16,25 @@ if [ -d "$HOME/.shellrc/bash.d" ]; then
       source "$file"
     fi
   done
+
+  # Support .local, not checked-in configs
+  for file in "$HOME/.shellrc/bash.d"/*.bash.local; do
+    if [ -f "$file" ]; then
+      source "$file"
+    fi
+  done
 fi
 
 # Shell agnostic items
 if [ -d "$HOME/.shellrc/shell.d" ]; then
   for file in "$HOME/.shellrc/shell.d"/*.sh; do
+    if [ -f "$file" ]; then
+      source "$file"
+    fi
+  done
+
+  # Support .local, not checked-in configs
+  for file in "$HOME/.shellrc/shell.d"/*.sh.local; do
     if [ -f "$file" ]; then
       source "$file"
     fi
