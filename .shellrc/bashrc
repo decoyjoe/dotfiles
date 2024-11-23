@@ -18,7 +18,7 @@ if [ -d "$HOME/.shellrc/bash.d" ]; then
   done
 
   # Support .local, not checked-in configs
-  for file in "$HOME/.shellrc/bash.d"/*.bash.local; do
+  for file in "$HOME/.shellrc/bash.d"/*.local; do
     if [ -f "$file" ]; then
       source "$file"
     fi
@@ -34,7 +34,7 @@ if [ -d "$HOME/.shellrc/shell.d" ]; then
   done
 
   # Support .local, not checked-in configs
-  for file in "$HOME/.shellrc/shell.d"/*.sh.local; do
+  for file in "$HOME/.shellrc/shell.d"/*.local; do
     if [ -f "$file" ]; then
       source "$file"
     fi

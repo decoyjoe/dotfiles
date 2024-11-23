@@ -17,7 +17,7 @@ if [ -d "$HOME/.shellrc/login.d" ]; then
   done
 
   # Support .local, not checked-in configs
-  for file in "$HOME/.shellrc/login.d"/*.login.local; do
+  for file in "$HOME/.shellrc/login.d"/*.local; do
     if [ -f "$file" ]; then
       source "$file"
     fi
