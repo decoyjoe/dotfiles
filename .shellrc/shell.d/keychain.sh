@@ -3,3 +3,9 @@
 # it may be due to this WSL2 bug: https://github.com/microsoft/WSL/issues/11857
 
 eval $(keychain --eval --noask --quiet)
+
+# Make sure SSH is configured to add keys to ssh-agent
+if [ ! -f ~/.ssh/config ] || ! grep -q '^AddKeysToAgent yes' ~/.ssh/config; then
+  mkdir -p ~/.ssh
+  echo 'AddKeysToAgent yes' >> ~/.ssh/config
+fi
