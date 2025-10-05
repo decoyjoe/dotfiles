@@ -7,20 +7,21 @@ command alias to interact with the dotfiles repo.
 ## Install
 
 ```shell
-cd $HOME
-git clone --bare git@github.com:decoyjoe/dotfiles.git $HOME/.dotfiles
+cd "$HOME"
+git clone --bare git@github.com:decoyjoe/dotfiles.git "$HOME/.dotfiles"
 alias dotfiles="/usr/bin/git --git-dir=${HOME}/.dotfiles/ --work-tree=${HOME}"
 
-# Use environment variables if they exist; otherwise prompt the user
 email="${DOTFILES_EMAIL:-}"
 first_last="${DOTFILES_FIRST_LAST:-}"
 
 if [ -z "$email" ]; then
-  read -p 'Enter your Email address: ' email
+  printf 'Enter your Email address: '
+  IFS= read -r email
 fi
 
 if [ -z "$first_last" ]; then
-  read -p 'Enter your First and Last name: ' first_last
+  printf 'Enter your First and Last name: '
+  IFS= read -r first_last
 fi
 
 dotfiles config --local user.email "$email"
@@ -28,9 +29,12 @@ dotfiles config --local user.name "$first_last"
 dotfiles config --local status.showUntrackedFiles no
 dotfiles checkout
 
-ln -bS .orig -s $HOME/.shellrc/profile $HOME/.profile
-ln -bS .orig -s $HOME/.shellrc/bash_profile $HOME/.bash_profile
-ln -bS .orig -s $HOME/.shellrc/bashrc $HOME/.bashrc
+ln -sfn "$HOME/.shellrc/profile"      "$HOME/.profile"
+ln -sfn "$HOME/.shellrc/bash_profile" "$HOME/.bash_profile"
+ln -sfn "$HOME/.shellrc/bashrc"       "$HOME/.bashrc"
+
+ln -sfn "$HOME/.shellrc/zprofile"     "$HOME/.zprofile"
+ln -sfn "$HOME/.shellrc/zshrc"        "$HOME/.zshrc"
 ```
 
 ## Usage
