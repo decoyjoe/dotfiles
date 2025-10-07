@@ -1,3 +1,11 @@
+
+# Move words with Alt/Option + Arrow
+[keyboard]
+bindings = [
+  { key = "Right", mods = "Alt", chars = "\u001BF" },
+  { key = "Left",  mods = "Alt", chars = "\u001BB" },
+]
+
 # Dracula theme for Alacritty
 # https://draculatheme.com/alacritty
 #
