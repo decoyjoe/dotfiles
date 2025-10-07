@@ -1,0 +1,10 @@
+
+# Standard macOS Terminal has issues displaying ANSI characters
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  if command -v oh-my-posh >/dev/null 2>&1; then
+    eval "$(oh-my-posh init zsh --config pure)"
+  else
+    echo "Warning: oh-my-posh is not installed. Skipping prompt configuration."
+  fi
+fi
+
