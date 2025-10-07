@@ -1,10 +1,16 @@
 
+# Start profiling
+# zmodload zsh/zprof
+
 # Standard macOS Terminal has issues displaying ANSI characters
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   if command -v oh-my-posh >/dev/null 2>&1; then
-    eval "$(oh-my-posh init zsh --config pure)"
+    eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/joe.pure.yaml)"
   else
     echo "Warning: oh-my-posh is not installed. Skipping prompt configuration."
   fi
 fi
+
+# Stop profiling
+# zprof
 

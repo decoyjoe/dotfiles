@@ -1,0 +1,68 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version: 3
+upgrade:
+    source: cdn
+    interval: 168h
+    auto: false # Causes startup delay
+    notice: false # Causes startup delay
+console_title_template: '{{if .Root}}(Admin){{end}} {{.Folder}}'
+blocks:
+    # Working directory
+    - type: prompt
+      alignment: left
+      newline: true
+      segments:
+        - properties:
+            style: full
+          template: '{{ .Path }} '
+          foreground: 'cyan'
+          type: path
+          style: plain
+
+        # Git
+        - properties:
+            fetch_status: true
+            branch_icon: ''
+            commit_icon: '@'
+            github_icon: ''
+          template: '{{ .HEAD }}{{ if gt .Behind 0 }} ↓{{ end }}{{ if gt .Ahead 0 }} ↑{{ end }}{{ if or (.Working.Changed) (.Staging.Changed) }} <yellow>*</>{{ end }}'
+          foreground: 'lightBlue'
+          type: git
+          style: plain
+
+    # Command execution time and current time
+    - type: 'prompt'
+      alignment: right
+      segments:
+        - properties:
+            style: austin
+            always_enabled: true
+          template: '[{{ .FormattedMs }} '
+          foreground: 'darkGray'
+          type: executiontime
+          style: plain
+        - template: '| {{ .CurrentDate | date .Format }}] '
+          foreground: 'darkGray'
+          type: time
+          style: plain
+
+    # Prompt symbol
+    - type: prompt
+      alignment: left
+      segments:
+        - properties:
+            always_enabled: true
+          template: '❯'
+          foreground_templates:
+            - "{{ if eq .Code 0 }}green{{end}}"
+            - "{{ if gt .Code 0 }}red{{end}}"
+          type: text
+          style: plain
+      newline: true
+
+final_space: true
+
+secondary_prompt:
+  foreground: 'blue'
+  template: '❯❯ '
