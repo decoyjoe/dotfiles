@@ -36,13 +36,13 @@ blocks:
       alignment: right
       segments:
         - properties:
-            style: austin
+            style: round
             always_enabled: true
-          template: '[{{ .FormattedMs }} '
+          template: ' {{ .FormattedMs }} '
           foreground: 'darkGray'
           type: executiontime
           style: plain
-        - template: '| {{ .CurrentDate | date .Format }}] '
+        - template: '| {{ .CurrentDate | date .Format }} '
           foreground: 'darkGray'
           type: time
           style: plain
