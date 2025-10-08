@@ -1,23 +1,35 @@
 # Start profiling
 # zmodload zsh/zprof
 
-enable_prompt=true
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
-# Skip oh-my-posh setup if in Apple Terminal (ANSI issues)
-if [ "$TERM_PROGRAM" = "Apple_Terminal" ]; then
-  echo "Warning: Apple Terminal has limited ANSI support. Skipping custom prompt."
-  enable_prompt=false
+
+# load all files from the .shellrc/zsh.d directory
+if [ -d "$HOME/.shellrc/zsh.d" ]; then
+  for file in "$HOME"/.shellrc/zsh.d/*.zsh(N); do
+    source "$file"
+  done
+
+  # Support .local, not checked-in configs
+  for file in "$HOME"/.shellrc/zsh.d/*.local(N); do
+    source "$file"
+  done
 fi
 
-# Check if oh-my-posh is installed
-if ! command -v oh-my-posh >/dev/null 2>&1; then
-  echo "Warning: oh-my-posh is not installed. Skipping custom prompt."
-  enable_prompt=false
-fi
+# Shell agnostic items
+if [ -d "$HOME/.shellrc/shell.d" ]; then
+  for file in "$HOME"/.shellrc/shell.d/*.sh(N); do
+    source "$file"
+  done
 
-# Only apply the prompt if everything checks out
-if $enable_prompt; then
-  eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/joe.pure.yaml)"
+  # Support .local, not checked-in configs
+  for file in "$HOME"/.shellrc/shell.d/*.local(N); do
+    source "$file"
+  done
 fi
 
 # Stop profiling

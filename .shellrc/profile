@@ -8,19 +8,21 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# Execute login shell items first
-if [ -d "$HOME/.shellrc/login.d" ]; then
-  for file in "$HOME/.shellrc/login.d"/*.login; do
-    if [ -f "$file" ]; then
-      source "$file"
-    fi
-  done
+login_d="$HOME/.shellrc/login.d"
 
-  # Support .local, not checked-in configs
-  for file in "$HOME/.shellrc/login.d"/*.local; do
-    if [ -f "$file" ]; then
-      source "$file"
-    fi
+# Execute login shell items first
+if [ -d "$login_d" ]; then
+  if [ -n "$ZSH_VERSION" ]; then
+    # zsh: (N) ignores patterns with no matches — safe and quiet
+    files=("$login_d"/*.login(N) "$login_d"/*.local(N))
+  else
+    # bash and others: globbing does not error by default if no matches found
+    files=("$login_d"/*.login "$login_d"/*.local)
+  fi
+
+  for file in "${files[@]}"; do
+    [ -f "$file" ] || continue
+    source "$file"
   done
 fi
 
@@ -32,3 +34,6 @@ if [ -n "$BASH_VERSION" ]; then
       source "$HOME/.bashrc"
     fi
 fi
+
+# if running zsh
+# Do nothing; zsh automatically sources .zshrc on its own
