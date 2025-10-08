@@ -6,7 +6,7 @@ upgrade:
     interval: 168h
     auto: false # Causes startup delay
     notice: false # Causes startup delay
-console_title_template: '{{if .Root}}(Admin){{end}} {{.Folder}}'
+console_title_template: '{{if .Root}}(Admin){{end}} {{ .Shell }} — {{ .Folder }}'
 blocks:
     # Working directory
     - type: prompt
