@@ -8,11 +8,18 @@ upgrade:
     notice: false # Causes startup delay
 console_title_template: '{{if .Root}}(Admin){{end}} {{ .Shell }} — {{ .Folder }}'
 blocks:
-    # Working directory
     - type: prompt
       alignment: left
       newline: true
       segments:
+        # Python venv
+        - properties:
+            fetch_version: false
+          template: "({{ .Venv }}) "
+          type: python
+          style: plain
+
+        # Working directory
         - properties:
             style: full
           template: '{{ .Path }} '
@@ -50,6 +57,7 @@ blocks:
     # Prompt symbol
     - type: prompt
       alignment: left
+      newline: true
       segments:
         - properties:
             always_enabled: true
@@ -59,7 +67,6 @@ blocks:
             - "{{ if gt .Code 0 }}red{{end}}"
           type: text
           style: plain
-      newline: true
 
 final_space: true
 
