@@ -144,7 +144,7 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-semicolon = 'mode service'
 
     # Application bindings
-    cmd-e = 'exec-and-forget open ~/Downloads'
+    alt-e = 'exec-and-forget open ~/Downloads'
     alt-b = 'exec-and-forget open -n "/Applications/Brave Browser.app"'
     ctrl-backtick = 'exec-and-forget open -a /Applications/Alacritty.app'
     ctrl-alt-b = 'exec-and-forget open -a "/Applications/Brave Browser.app"'
