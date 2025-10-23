@@ -1,6 +1,4 @@
 
-export EDITOR=vim
-
 # Add Homebrew path only on macOS
 if [ "$(uname)" = "Darwin" ]; then
   # Add /opt/homebrew/bin to the PATH if it exists and isn't already there
