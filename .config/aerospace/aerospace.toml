@@ -154,8 +154,14 @@ automatically-unhide-macos-hidden-apps = false
     ctrl-alt-c = 'exec-and-forget open -a "/Applications/Visual Studio Code.app"'
     ctrl-alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
 
+# To find the app-id, start the app and then run in a terminal:
+# osascript -e 'id of app "APP_NAME"'
 [[on-window-detected]]
     if.app-id = 'com.apple.finder'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.wireguard.macos'
     run = 'layout floating'
 
 # 'service' binding mode declaration.
