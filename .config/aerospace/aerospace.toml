@@ -143,9 +143,12 @@ automatically-unhide-macos-hidden-apps = false
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-semicolon = 'mode service'
 
-    # Application bindings
+    # Launch a new window of an application.
     alt-e = 'exec-and-forget open ~/Downloads'
-    alt-b = 'exec-and-forget open -n "/Applications/Brave Browser.app"'
+    alt-n = 'exec-and-forget open -n "/Applications/Brave Browser.app"'
+    alt-t = 'exec-and-forget open -n "/Applications/Alacritty.app"'
+
+    # Focus an application if it's running, if not then launch it.
     ctrl-backtick = 'exec-and-forget open -a /Applications/Alacritty.app'
     ctrl-alt-b = 'exec-and-forget open -a "/Applications/Brave Browser.app"'
     ctrl-alt-c = 'exec-and-forget open -a "/Applications/Visual Studio Code.app"'
