@@ -1,11 +1,4 @@
 
-# Move words with Alt/Option + Arrow
-[keyboard]
-bindings = [
-  { key = "Right", mods = "Alt", chars = "\u001BF" },
-  { key = "Left",  mods = "Alt", chars = "\u001BB" },
-]
-
 [font]
 size = 13.5
 
