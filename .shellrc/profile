@@ -14,7 +14,7 @@ login_d="$HOME/.shellrc/login.d"
 if [ -d "$login_d" ]; then
   if [ -n "$ZSH_VERSION" ]; then
     # zsh: (N) ignores patterns with no matches — safe and quiet
-    files=("$login_d"/*.login(N) "$login_d"/*.local(N))
+    eval 'files=("$login_d"/*.login(N) "$login_d"/*.local(N))'
   else
     # bash and others: globbing does not error by default if no matches found
     files=("$login_d"/*.login "$login_d"/*.local)

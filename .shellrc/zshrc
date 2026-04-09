@@ -7,19 +7,6 @@ case $- in
       *) return;;
 esac
 
-
-# load all files from the .shellrc/zsh.d directory
-if [ -d "$HOME/.shellrc/zsh.d" ]; then
-  for file in "$HOME"/.shellrc/zsh.d/*.zsh(N); do
-    source "$file"
-  done
-
-  # Support .local, not checked-in configs
-  for file in "$HOME"/.shellrc/zsh.d/*.local(N); do
-    source "$file"
-  done
-fi
-
 # Shell agnostic items
 if [ -d "$HOME/.shellrc/shell.d" ]; then
   for file in "$HOME"/.shellrc/shell.d/*.sh(N); do
@@ -28,6 +15,18 @@ if [ -d "$HOME/.shellrc/shell.d" ]; then
 
   # Support .local, not checked-in configs
   for file in "$HOME"/.shellrc/shell.d/*.local(N); do
+    source "$file"
+  done
+fi
+
+# Zsh-specific items from the .shellrc/zsh.d directory
+if [ -d "$HOME/.shellrc/zsh.d" ]; then
+  for file in "$HOME"/.shellrc/zsh.d/*.zsh(N); do
+    source "$file"
+  done
+
+  # Support .local, not checked-in configs
+  for file in "$HOME"/.shellrc/zsh.d/*.local(N); do
     source "$file"
   done
 fi
