@@ -53,6 +53,10 @@ blocks:
           foreground: 'darkGray'
           type: time
           style: plain
+        - template: '| {{ .Shell }} '
+          foreground: 'darkGray'
+          type: shell
+          style: plain
 
     # Prompt symbol
     - type: prompt
