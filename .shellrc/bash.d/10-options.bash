@@ -3,16 +3,26 @@
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
-# append to the history file, don't overwrite it
-shopt -s histappend
-
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=50000
+HISTFILESIZE=50000
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+shopt -s histappend   # append to the history file, don't overwrite it
+shopt -s cmdhist      # Save multi-line commands as one entry
+shopt -s checkwinsize # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
+shopt -s checkjobs    # Warn about running jobs before exit
+
+# Write each command to history immediately AND reload from file
+# This is the key line for shared, immediate history across sessions
+PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND}"
+
+# Prefix-based history search with arrow keys
+bind '"\e[A": history-search-backward'   # Up arrow
+bind '"\e[B": history-search-forward'    # Down arrow
+
+# For terminals using alternative escape sequences
+bind '"\eOA": history-search-backward'
+bind '"\eOB": history-search-forward'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -38,3 +48,4 @@ if ! shopt -oq posix; then
 fi
 
 [[ $- == *i* ]] && stty -ixon # Disable XON/XOFF for interactive shells
+
