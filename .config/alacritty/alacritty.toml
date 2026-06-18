@@ -1,3 +1,5 @@
+[window]
+option_as_alt = 'OnlyLeft' # on macOS
 
 [font]
 size = 14
