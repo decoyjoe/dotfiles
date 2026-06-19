@@ -43,3 +43,12 @@ if command -v fnm &>/dev/null; then
   fi
 fi
 
+# fzf: https://github.com/junegunn/fzf
+if command -v fzf &>/dev/null; then
+  # Dracula theme
+  export FZF_DEFAULT_OPTS=$'--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9,fg+:#f8f8f2,bg+:#44475a
+    --color=hl+:#bd93f9,info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6
+    --color=marker:#ff9ed4,spinner:#ffb86c,header:#6272a4,border:#6272a4
+    --color=gutter:#44475a'
+fi
+
