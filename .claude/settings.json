@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "ask": [
+      "WebFetch"
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "theme": "auto"
+}
