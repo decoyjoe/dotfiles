@@ -11,6 +11,10 @@ cd "$HOME"
 git clone --bare git@github.com:decoyjoe/dotfiles.git "$HOME/.dotfiles"
 alias dotfiles="/usr/bin/git --git-dir=${HOME}/.dotfiles/ --work-tree=${HOME}"
 
+# Ensure remote-tracking refs are stored locally (origin/*)
+dotfiles config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+dotfiles fetch origin
+
 email="${DOTFILES_EMAIL:-}"
 first_last="${DOTFILES_FIRST_LAST:-}"
 
