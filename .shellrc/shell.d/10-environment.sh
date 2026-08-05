@@ -9,7 +9,7 @@ if [ -n "$BASH_VERSION" ]; then
   current_shell='bash'
 fi
 
-# Add Homebrew path only on macOS
+# macOS
 if [ "$(uname)" = "Darwin" ]; then
   # Add /opt/homebrew/bin to the PATH if it exists and isn't already there
   if [ -d /opt/homebrew/bin ]; then
@@ -32,6 +32,8 @@ if [ "$(uname)" = "Darwin" ]; then
   if [ "${current_bash}" != "${homebrew_bash}" ]; then
     alias bash="${homebrew_bash}"
   fi
+
+  export XDG_CONFIG_HOME="$HOME/.config"
 fi
 
 # Fast Node Manager: https://github.com/Schniz/fnm
