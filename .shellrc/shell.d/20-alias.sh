@@ -15,11 +15,16 @@ s() {
     raw=$(history)
   fi
 
-  cmd=$(printf '%s\n' "$raw" \
-    | grep -E '^[[:space:]]*[0-9]+[[:space:]]+ssh[[:space:]]' \
-    | sed 's/^[[:space:]]*[0-9]*[[:space:]]*//' \
-    | sort -u \
-    | fzf --height=~40% --prompt="ssh> ")
+  cmd=$(
+    printf '%s\n' "$raw"                                         | # Emit history as lines.
+    grep -E '^[[:space:]]*[0-9]+[[:space:]]+ssh[[:space:]]'      | # Keep only history lines that start with ssh.
+    sed 's/^[[:space:]]*[0-9]*[[:space:]]*//'                    | # Strip history line numbers/prefix.
+    grep -Ev '^ssh[[:space:]]+-([hVQ]|G([[:space:]]|$))'         | # Exclude ssh utility calls (-h/-V/-Q/-G).
+    tac                                                          | # Reverse to newest-first for dedupe.
+    awk '!seen[$0]++'                                            | # Keep first occurrence (most recent exact command).
+    tac                                                          | # Return to chronological order.
+    fzf +s --tac --layout=reverse --height=~40% --prompt="ssh> "   # Preserve order and preferred fzf display.
+  )
 
   if [ -n "$cmd" ]; then
     # Inject into history so after exiting ssh, up-arrow recalls the actual ssh command (not "s").
