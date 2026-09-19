@@ -5,6 +5,13 @@ alias la='ls -la'
 alias lg='lazygit'
 alias psh='pwsh.exe'
 
+# Portable `tac` replacement (macOS doesn't ship GNU coreutils' tac).
+if ! command -v tac >/dev/null 2>&1; then
+  tac() {
+    awk '{a[NR]=$0} END {for (i=NR; i > 0; i--) print a[i]}'
+  }
+fi
+
 # Fuzzy-find ssh commands from history.
 s() {
   local cmd raw
