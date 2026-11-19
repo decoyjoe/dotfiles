@@ -1,5 +1,6 @@
 {
   "permissions": {
+    "defaultMode": "plan",
     "ask": [
       "WebFetch"
     ]
@@ -8,5 +9,6 @@
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
-  "theme": "auto"
+  "theme": "auto",
+  "model": "opus"
 }
