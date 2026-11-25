@@ -1,14 +1,14 @@
 {
   "permissions": {
-    "defaultMode": "plan",
     "ask": [
       "WebFetch"
-    ]
+    ],
+    "defaultMode": "plan"
   },
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
-  "theme": "auto",
-  "model": "opus"
+  "theme": "auto"
 }
